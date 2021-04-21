@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/teal_700"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardElevation="0dp"
+    card_view:cardBackgroundColor="@android:color/transparent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="#000"></TextView>
+
+        <TextView
+            android:id="@+id/uuid2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="UUID: "
+            android:textColor="#808080"
+            android:layout_marginTop="10dp"></TextView>
+
+        <TextView
+            android:id="@+id/properties"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="PROPIEDADES: "
+            android:textColor="#808080"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"></TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000"></View>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
