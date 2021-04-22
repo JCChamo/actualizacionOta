@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Services"></activity>
-        <activity android:name=".adapter.Characteristics"></activity>
+        <activity android:name=".Characteristics"></activity>
+        <activity android:name=".UploadZip"></activity>
+        <activity android:name=".NotificationActivity"></activity>
     </application>
 
 </manifest>

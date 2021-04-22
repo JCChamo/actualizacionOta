@@ -14,10 +14,10 @@
         android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
 
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"></ListView>
 
 </LinearLayout>

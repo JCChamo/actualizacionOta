@@ -3,6 +3,8 @@ package com.example.actualizacionota
 import android.bluetooth.*
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -10,15 +12,14 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.actualizacionota.adapter.Characteristics
-import com.example.actualizacionota.adapter.Characteristics.Companion.adapter
-import com.example.actualizacionota.adapter.Characteristics.Companion.messageList
 import com.example.actualizacionota.adapter.ServiceAdapter
 
 class Services : AppCompatActivity(), ServiceAdapter.OnItemClickListener{
+    private var actionBar : ActionBar? = null
     lateinit var recyclerView : RecyclerView
     lateinit var serviceAdapter: ServiceAdapter
     private var gattServiceList = arrayListOf<BluetoothGattService>()
@@ -27,7 +28,6 @@ class Services : AppCompatActivity(), ServiceAdapter.OnItemClickListener{
     private lateinit var context: Context
     private lateinit var listener: ServiceAdapter.OnItemClickListener
     private lateinit var mProgressBar: ProgressBar
-    private lateinit var spinner: Spinner
 
     companion object {
         lateinit var bluetoothGatt: BluetoothGatt
@@ -42,6 +42,9 @@ class Services : AppCompatActivity(), ServiceAdapter.OnItemClickListener{
         listener = this
         bluetoothDevice = MainActivity.bluetoothDevice
 
+        actionBar = supportActionBar
+        MainActivity.Companion.ActionBarStyle.changeActionBarColor(actionBar!!)
+
         mProgressBar = findViewById(R.id.progressbar2)
         recyclerView = findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -54,8 +57,6 @@ class Services : AppCompatActivity(), ServiceAdapter.OnItemClickListener{
 
     }
     override fun onItemClick(position: Int) {
-//        var adapter = SpinnerAdapter(context, R.layout.spinner_list, listOfCharacteristicMap[position][position]!!)
-//        spinner.adapter = adapter
         val intent = Intent(this, Characteristics::class.java)
         intent.putExtra("position", position)
         startActivity(intent)
@@ -100,8 +101,9 @@ class Services : AppCompatActivity(), ServiceAdapter.OnItemClickListener{
                 }
             }
         }
-        bluetoothGatt = bluetoothDevice.connectGatt(applicationContext, false, bluetoothGattCallback)
-
+        runOnUiThread {
+            bluetoothGatt = bluetoothDevice.connectGatt(applicationContext, false, bluetoothGattCallback)
+        }
         Toast.makeText(applicationContext, "CONECTADO", Toast.LENGTH_SHORT).show()
     }
 

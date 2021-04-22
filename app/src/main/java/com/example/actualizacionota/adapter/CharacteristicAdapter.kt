@@ -66,6 +66,8 @@ class CharacteristicAdapter (var listener: OnItemClickListener) : RecyclerView.A
     fun setData(characteristicsList : MutableList<BluetoothGattCharacteristic>) {
         this.characteristicsList = characteristicsList
         notifyDataSetChanged()
+        if (itemCount > 0)
+            Log.d(":::", "Se han detectado características")
     }
 
     interface OnItemClickListener{

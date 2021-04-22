@@ -25,10 +25,9 @@ import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    var actionBar: ActionBar? = null
     private lateinit var mProgressBar: ProgressBar
     private lateinit var mac: TextView
-    var colorDrawable: ColorDrawable? = null
+    private var actionBar : ActionBar? = null
     private lateinit var scanButton: Button
     private lateinit var connectButton: Button
     val MY_PERMISSIONS_REQUEST_LOCATION = 99
@@ -43,6 +42,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         lateinit var bluetoothDevice: BluetoothDevice
+        object ActionBarStyle {
+            fun changeActionBarColor(actionBar: ActionBar){
+                var colorDrawable = ColorDrawable(Color.parseColor("#d1c4e9"))
+                actionBar.setBackgroundDrawable(colorDrawable)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,8 +65,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         actionBar = supportActionBar
-        colorDrawable = ColorDrawable(Color.parseColor("#d1c4e9"))
-        actionBar!!.setBackgroundDrawable(colorDrawable)
+        ActionBarStyle.changeActionBarColor(actionBar!!)
+
         mProgressBar.visibility = View.GONE
 
         bluetoothManager = getSystemService(BluetoothManager::class.java)
@@ -97,7 +102,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onScanResult(callbackType: Int, result: ScanResult?) {
                 super.onScanResult(callbackType, result)
-                if (result?.device?.address == "D4:50:A8:29:5E:50"){
+//                Log.d(":::", result?.device?.address.toString())
+                if (result?.device?.address == "DE:CB:8C:F0:88:E4"){
                     bluetoothDevice = bluetoothAdapter.getRemoteDevice(result.device?.address)
 
                     mac.text = bluetoothDevice.address
@@ -135,7 +141,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     bluetoothLeScanner = bluetoothAdapter.bluetoothLeScanner
                     progressBarAction()
                     searchDevice()
-                    connectButton.visibility = View.VISIBLE
+                    Handler().postDelayed({connectButton.visibility = View.VISIBLE }, 2000)
                 }
             }
             R.id.connectButton -> {

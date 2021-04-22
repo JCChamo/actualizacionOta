@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ACTUALIZACIONOTA</string>
+    <string name="dfu_uploading_percentage_label">0%</string>
+    <string name="dfu_action_upload_cancel">CANCELAR</string>
+    <string name="dfu_status_uploading">SUBIENDO…</string>
+    <string name="dfu_uploading_percentage">%d%%</string>
+    <string name="dfu_aborted">La subida de la aplicación se ha cancelado</string>
 </resources>
