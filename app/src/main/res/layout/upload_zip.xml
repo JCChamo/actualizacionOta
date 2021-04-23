@@ -26,6 +26,18 @@
         android:layout_marginTop="10dp"
         android:text="EXPLORAR ALMACENAMIENTO"></Button>
 
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:stateListAnimator="@null"
+        android:textColor="#fff"
+        android:elevation="5dp"
+        android:layout_marginTop="10dp"
+        android:text="ACTUALIZAR"></Button>
+
     <TextView
         android:id="@+id/zipName"
         android:layout_width="wrap_content"

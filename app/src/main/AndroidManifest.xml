@@ -28,6 +28,8 @@
         <activity android:name=".Characteristics"></activity>
         <activity android:name=".UploadZip"></activity>
         <activity android:name=".NotificationActivity"></activity>
+
+        <service android:name=".DfuService" android:enabled="true"></service>
     </application>
 
 </manifest>

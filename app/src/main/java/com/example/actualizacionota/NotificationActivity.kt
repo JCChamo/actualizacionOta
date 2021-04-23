@@ -8,7 +8,6 @@ import android.util.Log
 class NotificationActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(":::", "On create de NotificationActivity")
         if (isTaskRoot){
             val startAppIntent = Intent(this, DfuService::class.java)
             if (intent != null)

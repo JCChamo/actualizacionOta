@@ -7,7 +7,7 @@ import no.nordicsemi.android.dfu.DfuBaseService
 class DfuService : DfuBaseService() {
     override fun getNotificationTarget(): Class<out Activity>? {
         Log.d(":::", "getNotificationTarget de DfuService")
-        return NotificationActivity::class.java
+        return UploadZip::class.java
     }
 
     override fun isDebug(): Boolean = true
