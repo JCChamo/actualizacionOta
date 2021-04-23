@@ -1,15 +1,11 @@
 package com.example.actualizacionota
 
-import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.os.PersistableBundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -23,9 +19,7 @@ import no.nordicsemi.android.dfu.DfuBaseService
 import no.nordicsemi.android.dfu.DfuProgressListenerAdapter
 import no.nordicsemi.android.dfu.DfuServiceInitiator
 import no.nordicsemi.android.dfu.DfuServiceListenerHelper
-import java.io.File
 
-@Suppress("DEPRECATED_IDENTITY_EQUALS")
 class UploadZip : AppCompatActivity(), View.OnClickListener {
 
     private var actionBar : ActionBar? = null
@@ -73,6 +67,7 @@ class UploadZip : AppCompatActivity(), View.OnClickListener {
             progressBar.isIndeterminate = true
             textPercentage.setText(R.string.dfu_status_disconnecting)
             Log.d(":::", "Desconectando dispositivo")
+            Toast.makeText(applicationContext, "PROCESO TERMINADO", Toast.LENGTH_SHORT).show()
         }
 
         override fun onDfuCompleted(deviceAddress: String) {
@@ -173,7 +168,7 @@ class UploadZip : AppCompatActivity(), View.OnClickListener {
             initiator = DfuServiceInitiator(bluetoothDevice.address)
                     .setKeepBond(true)
                     .setDisableNotification(true)
-                    .setForeground(true)
+                    .setForeground(false)
                     .setPrepareDataObjectDelay(400)
                     .setZip(uri, path)
 
@@ -183,7 +178,6 @@ class UploadZip : AppCompatActivity(), View.OnClickListener {
             initiator.start(this, DfuService::class.java)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1001) {
